@@ -1,0 +1,32 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Show message</title>
+</head>
+<body>
+  <h2>CPUの選択</h2>
+  <td>ID　 型番　グレード　ソケット　　　価格</td>
+  <table>
+      <% for( let row of data ) { %>
+        <tr>
+            <td><%= row.id %></td>
+            <td><%= row.Maker_id %></td>
+            <td><%= row.model %></td>
+          　<td>　   </td>
+            <td><%= row.grade %></td>
+            <td>　　</td>
+            <td><%= row.socket %></td>
+            <td>　　</td>
+            <td><%= row.price %></td>
+        </tr>
+      <% } %>
+  </table>
+  <td>使用するIDを入力してください</td><br>
+        <form action="/MB1">
+            <input type="text" name="CPU_ID" id="CPU_ID">
+            <input type="submit" value="送信">
+        </form>
+   <a href="/">トップへ戻る</a>
+</body>
+</html>
