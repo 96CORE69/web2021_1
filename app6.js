@@ -45,6 +45,7 @@ app.get("/top", (req, res) => {
 app.get("/CPU", (req, res) => {
     //console.log(req.query.pop);    // ①
     let sql = "select id, maker_id, model, grade, socket, price from CPU;";
+  
     //console.log(sql);    // ②
     db.serialize( () => {
         db.all(sql, (error, data) => {
@@ -57,20 +58,36 @@ app.get("/CPU", (req, res) => {
     })
 })
 
+app.get("/DELETE", (req, res) => {
+    //console.log(req.query.pop);    // ①
+    let sql = "select id, maker_id, model, grade, socket, price from CPU;";
+    //console.log(sql);    // ②
+    db.serialize( () => {
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            res.render('CPU', {data:data});
+        })
+    })
+})
+
+
 app.get("/MB1", (req, res) => {
     //console.log(req.query.pop);    // ①
 
-    let data1;
+    let data_CPU;
     //console.log(sql);    // ②
     db.serialize( () => {
-        let sql = "select * from mb where 1 = id;";
+        let sql = "select * from CPU where" + '"' + req.query.CPU_ID + '"' + "= id;";
         db.all(sql, (error, data) => {
             if( error ) {
                 res.render('show', {mes:"エラーです"});
             }
             console.log(data);    // ③
             //res.render('MB1', {data:data});
-          data1 = data;
+          data_CPU = data;
         });
         sql = "select id, maker_id, model, grade, socket, price from MB;";
       //console.log(sql);    // ②
@@ -79,7 +96,45 @@ app.get("/MB1", (req, res) => {
                 res.render('show', {mes:"エラーです"});
             }
             console.log(data);    // ③
-            res.render('MB1', {data:data, data1:data1});
+            res.render('MB1', {data:data, data_CPU:data_CPU});
+        })
+    })
+})
+
+app.get("/MEM", (req, res) => {
+    //console.log(req.query.pop);    // ①
+    let data_CPU;
+    let data_MB;
+    //console.log(sql);    // ②
+    db.serialize( () => {
+        let sql = "select * from CPU where " + '"' + req.query.CPU_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_CPU = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from MB where " + '"' + req.query.MB_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_MB = data;
+        }); 
+        sql = "select id, maker_id, model, standard, clock, price from MEM;";
+      //console.log(sql);    // ②
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            res.render('MEM', {data:data, data_CPU:data_CPU, data_MB:data_MB});
         })
     })
 })

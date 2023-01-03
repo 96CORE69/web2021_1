@@ -5,7 +5,7 @@
   <title>Show message</title>
 </head>
 <body>
-  <h2>MBの選択</h2>
+  <h2>MEMの選択</h2>
   <td>-選択中のパーツ-</td><br>
   <td>【CPU】</td>
         <% for( let row of data_CPU ) { %>
@@ -14,33 +14,41 @@
             <td><%= row.model %></td>
             <td>　　</td>
             <td><%= row.price %></td>
-        </tr><br><br>
+        </tr><br>
       <% } %>
-  <table border="1">
-  <td>ID</td>
-  <td>型番</td>
-  <td>グレード</td>
-  <td>ソケット</td>
-  <td>価格</td>
-      <% for( let row of data ) { %>
+    <td>【MB】</td>
+        <% for( let row of data_MB ) { %>
         <tr>
             <td><%= row.id %></td>
             <td><%= row.model %></td>
+            <td>　　</td>
+            <td><%= row.price %></td>
+        </tr><br><br>
+      <% } %>
+  <td>ID　 グレード　型番　ソケット　　　価格</td>
+  <table>
+      <% for( let row of data ) { %>
+        <tr>
+            <td><%= row.id %></td>
+            <td><%= row.Maker_id %></td>
+        　  <td>　</td>
+            <td><%= row.model %></td>
+          　<td>　</td>
             <td><%= row.grade %></td>
+            <td>　　</td>
             <td><%= row.socket %></td>
+            <td>　　</td>
             <td><%= row.price %></td>
         </tr>
       <% } %>
   </table>
-  <br>
   <td>使用するIDを入力してください</td><br>
-        <form action="/MEM">
-            <input type="integer" name="MB_ID" id="MB_ID">
+        <form action="/CPU">
+            <input type="text" name="CPU_ID" id="CPU_ID">
             <input type="submit" value="送信">
         </form>
    <a href="/">トップへ戻る</a>
    <td>　　</td>
-   <a href="/CPU">ひとつ前に戻る</a>
-   <a href="/DELETE">編集</a>
+   <a href="/MB1">ひとつ前に戻る</a>
 </body>
 </html>
