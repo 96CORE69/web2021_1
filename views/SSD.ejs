@@ -5,7 +5,7 @@
   <title>Show message</title>
 </head>
 <body>
-  <h2>HDDの選択</h2>
+  <h2>SSDの選択</h2>
   <td>-選択中のパーツ-</td>
   <table border="1">
         <% for( let row of data_CPU ) { %>
@@ -54,6 +54,14 @@
             <td><%= row.price %></td>
         </tr>
       <% } %>
+      <% for( let row of data_HDD ) { %>
+        <tr>
+            <td>【HDD】</td>
+            <td><%= row.id %></td>
+            <td><%= row.model %></td>
+            <td><%= row.price %></td>
+        </tr>
+      <% } %> 
   </table>
   <br>
   <table border="1">
@@ -71,18 +79,19 @@
       <% } %>
   </table>
   <td>使用するIDを入力してください</td><br>
-        <form action="/SSD">
-            <input type="integer" name="HDD_ID" id="HDD_ID">
+        <form action="/CASE">
+            <input type="integer" name="SSD_ID" id="SSD_ID">
             <input type="hidden" name="CPU_ID" id="CPU_ID" value=<%= data_CPU[0].id %> > 
             <input type="hidden" name="MB_ID" id="MB_ID" value=<%= data_MB[0].id %> >
             <input type="hidden" name="MEM_ID" id="MEM_ID" value=<%= data_MEM[0].id %> > 
             <input type="hidden" name="GPU_ID" id="GPU_ID" value=<%= data_GPU[0].id %> > 
             <input type="hidden" name="COOLER_ID" id="COOLER_ID" value=<%= data_COOLER[0].id %> > 
             <input type="hidden" name="PW_ID" id="PW_ID" value=<%= data_PW[0].id %> > 
+            <input type="hidden" name="HDD_ID" id="HDD_ID" value=<%= data_HDD[0].id %> > 
             <input type="submit" value="送信">
         </form>
    <a href="/">トップへ戻る</a>
    <td>　　</td>
-   <a href="/PW">ひとつ前に戻る</a>
+   <a href="/HDD">ひとつ前に戻る</a>
 </body>
 </html>

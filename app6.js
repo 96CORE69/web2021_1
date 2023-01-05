@@ -326,6 +326,189 @@ app.get("/PW", (req, res) => {
     })
 })
 
+app.get("/HDD", (req, res) => {
+    //console.log(req.query.pop);    // ①
+    let data_CPU;
+    let data_MB;
+    let data_MEM;
+    let data_GPU;
+    let data_COOLER;
+    let data_PW;
+    //console.log(sql);    // ②
+    db.serialize( () => {
+        let sql = "select * from CPU where " + '"' + req.query.CPU_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_CPU = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from MB where " + '"' + req.query.MB_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_MB = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from MEM where " + '"' + req.query.MEM_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_MEM = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from GPU where " + '"' + req.query.GPU_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_GPU = data;
+        }); 
+    db.serialize( () => {
+        let sql = "select * from COOLER where " + '"' + req.query.COOLER_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_COOLER = data;
+        });
+      });
+        db.serialize( () => {
+        let sql = "select * from PW where " + '"' + req.query.PW_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_PW = data;
+        });
+      });
+        sql = "select id, maker_id, model, capacity, price from HDD;";
+      //console.log(sql);    // ②
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            res.render('HDD', {data:data, data_CPU:data_CPU, data_MB:data_MB, data_MEM:data_MEM, data_GPU:data_GPU, data_COOLER:data_COOLER, data_PW:data_PW});
+        })
+    })
+})
+
+app.get("/SSD", (req, res) => {
+    //console.log(req.query.pop);    // ①
+    let data_CPU;
+    let data_MB;
+    let data_MEM;
+    let data_GPU;
+    let data_COOLER;
+    let data_PW;
+    let data_HDD;
+    //console.log(sql);    // ②
+    db.serialize( () => {
+        let sql = "select * from CPU where " + '"' + req.query.CPU_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_CPU = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from MB where " + '"' + req.query.MB_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_MB = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from MEM where " + '"' + req.query.MEM_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_MEM = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from GPU where " + '"' + req.query.GPU_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_GPU = data;
+        }); 
+    db.serialize( () => {
+        let sql = "select * from COOLER where " + '"' + req.query.COOLER_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_COOLER = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from PW where " + '"' + req.query.PW_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_PW = data;
+        });
+      });
+    db.serialize( () => {
+        let sql = "select * from HDD where " + '"' + req.query.HDD_ID + '"' + " = id;";
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            //res.render('MB1', {data:data});
+          data_HDD = data;
+        });
+      });  
+        sql = "select id, maker_id, model, capacity, price from SSD;";
+      //console.log(sql);    // ②
+        db.all(sql, (error, data) => {
+            if( error ) {
+                res.render('show', {mes:"エラーです"});
+            }
+            console.log(data);    // ③
+            res.render('SSD', {data:data, data_CPU:data_CPU, data_MB:data_MB, data_MEM:data_MEM, data_GPU:data_GPU, data_COOLER:data_COOLER, data_PW:data_PW, data_HDD:data_HDD});
+        })
+    })
+})
 app.get("/MB", (req, res) => {
     //console.log(req.query.pop);    // ①
     let sql = "select id, maker_id, model, grade, socket, price from MB;";
@@ -340,6 +523,7 @@ app.get("/MB", (req, res) => {
         })
     })
 })
+
 
 app.use(function(req, res, next) {
   res.status(404).send('ページが見つかりませんaaa');
