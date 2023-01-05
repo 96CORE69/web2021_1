@@ -1,0 +1,82 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Show message</title>
+</head>
+<body>
+  <h2>PSUの選択</h2>
+  <td>-選択中のパーツ-</td>
+  <table border="1">
+        <% for( let row of data_CPU ) { %>
+            <td>【CPU】</td>
+            <td><%= row.id %></td>
+            <td><%= row.model %></td>
+            <td><%= row.price %></td>
+      <% } %>
+      <% for( let row of data_MB ) { %>
+        <tr>
+            <td>【MB】</td>
+            <td><%= row.id %></td>
+            <td><%= row.model %></td>
+            <td><%= row.price %></td>
+        </tr>
+      <% } %>
+      <% for( let row of data_MEM ) { %>
+        <tr>
+            <td>【MEM】</td>
+            <td><%= row.id %></td>
+            <td><%= row.model %></td>
+            <td><%= row.price %></td>
+        </tr>
+      <% } %>
+      <% for( let row of data_GPU ) { %>
+        <tr>
+            <td>【GPU】</td>
+            <td><%= row.id %></td>
+            <td><%= row.model %></td>
+            <td><%= row.price %></td>
+        </tr>
+      <% } %>
+      <% for( let row of data_COOLER ) { %>
+        <tr>
+            <td>【COOLER】</td>
+            <td><%= row.id %></td>
+            <td><%= row.model %></td>
+            <td><%= row.price %></td>
+        </tr>
+        
+      <% } %>  
+  </table>
+  <br>
+  <table border="1">
+  <td>ID</td> 
+  <td>型番</td>
+  <td>電源容量</td>
+  <td>変換効率</td>
+  <td>価格</td>
+      <% for( let row of data ) { %>
+        <tr>
+            <td><%= row.id %></td>
+            <td><%= row.model %></td>
+            <td><%= row.power %></td>
+            <td><%= row.efficiency %></td>
+            <td><%= row.price %></td>
+        </tr>
+      <% } %>
+  </table>
+  <td>使用するIDを入力してください</td><br>
+        <form action="/SSD">
+            <input type="integer" name="PW_ID" id="PW_ID">
+            <input type="hidden" name="CPU_ID" id="CPU_ID" value=<%= data_CPU[0].id %> > 
+            <input type="hidden" name="MB_ID" id="MB_ID" value=<%= data_MB[0].id %> >
+            <input type="hidden" name="MEM_ID" id="MEM_ID" value=<%= data_MEM[0].id %> > 
+            <input type="hidden" name="GPU_ID" id="GPU_ID" value=<%= data_GPU[0].id %> > 
+            <input type="hidden" name="COOLER_ID" id="COOLER_ID" value=<%= data_COOLER[0].id %> > 
+            <input type="submit" value="送信">
+        </form>
+   <a href="/">トップへ戻る</a>
+   <td>　　</td>
+   <a href="/COOLER">ひとつ前に戻る</a>
+</body>
+</html>

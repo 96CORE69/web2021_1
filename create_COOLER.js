@@ -2,11 +2,11 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('test2.db');
 
 let schema = `
-create table GPU(
+create table COOLER(
   id integer primary key,
   maker_id not null,
   model text not null,
-  chipmaker text not null,
+  method text not null,
   price integer not null
 );
 `
